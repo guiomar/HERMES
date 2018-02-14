@@ -1,0 +1,132 @@
+HERMES 2017-03-31
+ - Fixed an error leading to calculate the PSI over incorrect frequencies (Thanks, Victor López).
+ - Disabled PSI calculation for resting-state data.
+
+HERMES 2016-01-28
+ - Fixed some errors in the cluster based permutation test.
+   * Fixed a minor bug in H_statisticsCBPT causing the program to fail when the number of permutations is 1.
+   * Fixed an error in H_statisticsCBPT underestimating the significancy in one unit (as if the number of permutations was an unit less than the real).
+   * Fixed an error causing CBPT to fail when comparing two groups and the number of sensors is different from 148.
+
+HERMES 2015-10-16
+ - Fixed a minor bug in HERMES_statistics rising an error when the statistcs' configuration button is pressed in Matlab 2014b or newer.
+
+HERMES 2015-09-16
+ - Added the license text in some files to fully comply with the GNU/GPL license.
+
+HERMES 2015-05-06
+ - Modified the GS parameters window to issue a warning, instead of an error, when the parameters are, according with the criteria of the program, incorrect.
+   * This is usefull specially when using data largely oversampled, for example to calculate the GS in band delta (maximum frequency of 4 Hz) of a signal sampled at 250 Hz (maximum frequency of 125 Hz).
+
+HERMES 2015-04-14
+ - Modified the code so the logo of HERMES is displayed using the 'image' function instead of the 'imshow' function.
+   * This should make unnecesary the use of the 'Image processing' toolbox.
+ - Modified some issues with HERMES' children windows.
+   * Matlab seems to have broken the modal windows in Linux.
+     If you use Linux and a version newer than 2014a, please *do not select another Matlab window* when a HERMES window appears.
+     If you do so, Matlab execution will probably hang.
+     We are trying to fix this.
+
+HERMES 2015-04-13
+ - Fixed a bug in H_filtfilt causing an error when the length of the data is odd (Thanks, Thomas).
+ - Fixed some minor GUI issues causing HERMES not to work in versions newer than R2014a.
+   * HERMES is still not fully tested on these versions, so if you find a problem, please tell us.
+
+HERMES 2014-12-10
+ - Added the possibility of calculate surrogates in imaginary coherence.
+
+HERMES 2014-12-09
+ - Fixed an error causing RHO parameter to be calculated as the entropy of the phase distribution, instead of one minus this entropy (Thanks, Bogdan).
+
+HERMES 2014-12-03
+ - Modified the CM algorythm to store the coherence-based measures (COH and iCOH) in single precission.
+ - Fixed an error causing the dimensions to be wrongly calculated on PDC/DTF and thus raising an error.
+
+HERMES 2014-11-26 extra
+ - Fixed an error causing TE to be calculated allways in the same direction.
+ - Fixed some errors when calculating partialized IT measures.
+
+HERMES 2014-11-26
+ - Fixed an error causing the FiedTrip data to be identified as not homogeneous causing a 'Not all the trials are equal' error.
+ - Fixed an error causing the baseline length to be calculated incorrectly when visualizing data.
+ - Fixed an error causing the frequency values (in coherence based measures) to be incorrectly labelled.
+
+HERMES 2014-10-30
+ - Fixed an error causing the partialized MI measures to be calculated incorrectly.
+
+HERMES 2014-10-16
+ - Fixed an error causing PDC values to be overwritten by DTF values when both indexes are selected.
+
+HERMES 2014-10-12
+ - Fixed an error in H_path causing problems when the route to HERMES contains spaces.
+
+HERMES 2014-09-01
+ - Added average connectivity visualization. Several instances of this window can be executed simultaneously, allowing to visually compare groups or conditions.
+ - Added the possibility of calculate paired (condition-like) statistics between different time windows of the same group and condition.
+ - Added the possibility of calculate uncorrected statistics.
+ - Renamed the files H_CBPTest.m and H_FDR.m to H_statisticsCBPT.m and H_statisticsFDR.m.
+ - Fixed an error causing statistics to be calculated allways over the first run, ignoring the configuration.
+ - Fixed an error causing the paired t-test and unpaired t-test to be used opposite to expected.
+ - Fixed an error causing the baseline length from FieldTrip data to be measured incorrectly.
+
+HERMES 2014-08-30
+ - Added the function H_filtfilt.m that performs:
+   * Two-pass FFT-based filtering using padding with reflected data.
+   * Hilbert transform using padding with reflected data.
+   The padded Hilbert transform is more accurate than the non-padded Hilbert transform, and *the results obtained using both methods are not comparable*.
+
+HERMES 2014-07-17
+ - Removed calls to "ismatrix" funtion for compatibility with older matlab versions.
+ - Replaced symbols "~" by "tmp" for compatibility with older matlab versions.
+
+HERMES 2014-03-17
+ - By default the diagonal in the connectivity matrices equals to zero (except in the ones that has some meaning like PDC or DTF).
+ - Changed old variable name dis_sens in CBPTest.m to distances
+
+HERMES 2014-03-08
+ - Unified criteria for the directionality indexes: element (i,j) indicates: i->j.
+
+HERMES 2014-01-31
+ - Fixed an error causing filter to be too large when the number of samples is multiple of 3.
+
+HERMES 2014-01-21
+ - Fixed incorrect usage of 'isequaln' function in H_chackFiles.m.
+
+HERMES 2013-12-13
+ - Fixed the layouts for Biosemi systems (Thanks, Mehrnaz Hazrati).
+ - Added EGI 32, 64, 128 and 256 systems (Thanks, Conchi Castellanos. *Disculpa el restraso*).
+ - Fixed call to Simulink Toolbox function 'boolean' in H_stop.m (changed to function 'logical').
+
+HERMES 2013-09-06
+ - Font in the log viewer changed to monospaced.
+ - Added information about index configuration in conectivity view.
+ - Added information about index and statistical test configuration in statistics view.
+ - Added statistics exportation.
+ - Added support to load ASCII files with extension *.txt or *.ascii.
+ - The p-value obtained with the surrogates is now obtained as (number of surrogates grater than the index)/(number of surrogates plus one) instead of (number of surrogates grater than the index)/(number of surrogates)
+ - The data labelling window automatically fills the values when only one possibility.
+ - The data labelling can now be saved in and restored from a CSV file.
+ - The autocorrelation time is now calculated when creating (or importing) the project, and default GS parameters 'time delay' and 'Theiler correction' are set according to it.
+ - When creating a project the 3D position of the channels is filled with the default values for the system (in mm). EEG systems are base in a 53 cm circunference head.
+ - Added layout and position information for Biosemi EEG systems, Yokogawa MEG systems, CTF MEG systems, Neuromag 122 system and MAGNES 3600 WH system.
+ - Fixed bug setting zero channels when no layout is selected.
+ - Project version upgraded to 0.9.1.
+
+HERMES_2013-07-08
+ - The frequency and lag entries in the dimensions matrix are now stored as column vectors.
+ - The project creation functions destroy the waitbar on error.
+ - The project importation functions destroy the importing project on error.
+ - wPLI can not now be selected for contiuous data.
+
+HERMES_2013-07-03
+ - Fixed bug causing to incorrectly create the frequency vector for PDC/DTF.
+ - Fixed bug causing an error when changing between methods in "View connectivity" mode.
+ - Fixed bug saving empty data when the processing is cancelled.
+
+HERMES_2013-06-12:
+ - Fixed little bug at H_CBPT.m
+ - Changed the PS minimun bandwidth from 4Hz to 0.1Hz
+ - Fixed little bug at H_psi.m
+
+HERMES_2013-05-17
+ - First considered version.
