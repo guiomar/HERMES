@@ -1,3 +1,6 @@
+HERMES 2018-05-21
+ - Add the option of windowing the data for SL.
+
 HERMES 2017-03-31
  - Fixed an error leading to calculate the PSI over incorrect frequencies (Thanks, Victor López).
  - Disabled PSI calculation for resting-state data.

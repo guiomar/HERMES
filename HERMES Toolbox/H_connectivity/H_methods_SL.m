@@ -28,22 +28,27 @@ function output = H_methods_SL ( data, config, waitbar )
 %
 % Authors:  Guiomar Niso, 2011
 %           Guiomar Niso, Ricardo Bruna, 2012
+%           Guiomar Niso, 2018
 %
 
 
 % Checks the existence of the waitbar.
 if nargin < 3, waitbar = []; end
 
+% Windows the data.
+data = H_window ( data, config.window );
 % Gets the size of the analysis data.
-[ samples, channels, trials ] = size ( data );
+[ samples, channels, windows, trials ] = size ( data );
 
 % Reserves the needed memory.
-if H_check ( config.measures, 'SL' ), output.SL.rawdata = ones ( channels, channels, trials ); end
+if H_check ( config.measures, 'SL' ), output.SL.rawdata = ones ( channels, channels, windows, trials ); end
 
 % Calculates the indexes for each trial and pair of sensors.
 
+for window = 1: windows
+    
 for trial = 1: trials
-    output.SL.rawdata(:,:,trial) = H_sl (data(:,:,trial), config);
+    output.SL.rawdata(:,:,window,trial) = H_sl (data(:,:,window,trial), config);
     
     if isstruct ( waitbar )
         waitbar.progress ( 5: 6 ) = [ trial trials ];
@@ -51,7 +56,9 @@ for trial = 1: trials
     end
 end
 
-output.SL.data = mean ( output.SL.rawdata, 3 );
+end
+
+output.SL.data = mean ( output.SL.rawdata, 4 );
 
 
 
