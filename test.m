@@ -24,7 +24,7 @@ config.surrogates   = 0;      % Number of surrogates (for statistics)
 config.measures = {'PLV'}; %(cell: {'COR','COH'})
 
 % Specific parameter for some PS metrics
-config.bandcenter   = [6];
+config.bandcenter   = [6 10];
 config.bandwidth    = 4;
 
 config.window.length  = 500;
